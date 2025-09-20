@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.proyectoprogramacioni;
+package com.mycompany.proyectoprograi;
 
 import java.util.Scanner;
 
@@ -10,11 +10,11 @@ import java.util.Scanner;
  *
  * @author Angel
  */
+public class PROYECTOPROGRAI {
 
-public class ProyectoprogramacionI {
+    public static void main(String[] args) {
+    Scanner sc = new Scanner (System.in);
 
-public static void main(String[] args) {
-   Scanner sc = new Scanner (System.in);
     int opcionmenu = 0;
     String codigo = "";
     String nombre = "";
@@ -189,8 +189,6 @@ public static void main(String[] args) {
         sc.nextLine();
       }
     }
-    
-    //Holaaaaaaaaaaaaaaaaaaaaa
  
     }//Fin de main
 }//Fin de class
