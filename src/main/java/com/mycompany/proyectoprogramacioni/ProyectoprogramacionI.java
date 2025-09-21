@@ -13,10 +13,10 @@ public class ProyectoprogramacionI {
 
         // Arreglos para múltiples medicamentos
         final int MAX = 50;
-        String[] codigos = new String[MAX];
-        String[] nombres = new String[MAX];
-        double[] precios = new double[MAX];
-        int[] cantidades = new int[MAX];
+        String[] codigos = new String[100];
+        String[] nombres = new String[100];
+        double[] precios = new double[100];
+        int[] cantidades = new int[100];
         int numMedicamentos = 0;
 
         // VARIABLES ORIGINALES (las mantuve)
