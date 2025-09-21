@@ -95,7 +95,7 @@ System.out.println("No existe el nombre del medicamento en el sistema");
 break;
 
 case 3:
-                    // Vender medicamento
+                   
 System.out.println("Venta del Medicamento");
 System.out.print("Cliente: ");
 cliente = sc.nextLine();
@@ -108,7 +108,7 @@ boolean vendido = false;
 
 for (int i = 0; i < numMedicamentos; i++) {
 if (buscar.equalsIgnoreCase(codigos[i]) || buscar.equalsIgnoreCase(nombres[i])) {
-                            // actualizo variables individuales con los datos encontrados
+                           
 codigo = codigos[i];
 nombre = nombres[i];
 precio = precios[i];
@@ -142,7 +142,7 @@ System.out.println("Total recaudado: " + totalacumulado);
 break;
 
 case 5:
-                    // Submenu (adaptado a arreglos, manteniendo la estructura original)
+                    
 int submenu = 0;
 do {
 System.out.println("---SUBMENU DE MEDICAMENTOS---");
@@ -165,7 +165,7 @@ continue;
 
 switch (submenu) {
 case 1:
-                                // Registrar dentro del submenu (igual que case 1 del menu principal)
+                               
 if (numMedicamentos < MAX) {
 System.out.print("Codigo: ");
 codigo = sc.nextLine();
@@ -197,7 +197,7 @@ System.out.println("Inventario lleno.");
 break;
 
 case 2:
-                                // Modificar precio (busca por codigo)
+                                
 if (numMedicamentos == 0) {
 System.out.println("No hay medicamentos en el sistema");
 break;
@@ -212,7 +212,7 @@ double nuevoPrecio = sc.nextDouble();
 sc.nextLine();
 if (nuevoPrecio >= 0) {
 precios[i] = nuevoPrecio;
-                                            // actualizo variable individual
+                                          
 precio = nuevoPrecio;
 System.out.println("Precio del medicamento actualizado");
 } else {
@@ -226,7 +226,7 @@ if (!modificado) System.out.println("No se encontro el medicamento");
 break;
 
 case 3:
-                                // Cambiar cantidad (busca por codigo)
+                               
 if (numMedicamentos == 0) {
 System.out.println("No hay ningun medicamento en el sistema");
 break;
@@ -240,10 +240,8 @@ System.out.print("Cantidad adicional a sumar (usar valor positivo) o nueva canti
 int nuevaCant = sc.nextInt();
 sc.nextLine();
 if (nuevaCant >= 0) {
-                                            // Aquí mantengo la acción original: cambiar cantidad a la nuevaCant (no sumarla)
-                                            // Si quieres que sea suma, cambia a: cantidades[i] += nuevaCant;
 cantidades[i] = nuevaCant;
-                                            cantidad = cantidades[i]; // actualizo variable individual
+                                            cantidad = cantidades[i]; 
 System.out.println("Cantidad actualizada");
 } else {
 System.out.println("Debe ingresar un número positivo");
@@ -256,7 +254,7 @@ if (!cambiado) System.out.println("Medicamento no encontrado");
 break;
 
 case 4:
-                                // Eliminar medicamento (por codigo) -> desplazar hacia atrás
+                      
 if (numMedicamentos == 0) {
 System.out.println("No hay medicamentos para eliminar");
 break;
@@ -272,7 +270,7 @@ nombres[j] = nombres[j + 1];
 precios[j] = precios[j + 1];
 cantidades[j] = cantidades[j + 1];
 }
-                                        // Limpiar última posición (opcional)
+                                        
 codigos[numMedicamentos - 1] = null;
 nombres[numMedicamentos - 1] = null;
 precios[numMedicamentos - 1] = 0;
