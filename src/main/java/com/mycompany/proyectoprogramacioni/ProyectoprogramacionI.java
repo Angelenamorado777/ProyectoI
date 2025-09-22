@@ -6,17 +6,30 @@ import java.util.Scanner;
  *
  * @author Angel
  */
-public class ProyectoprogramacionI {
-
-    public static void main(String[] args) {
-      Scanner sc = new Scanner(System.in);
-      
 /*/Arreglos para manejar el inventario de la farmcia
 codigos -> almacena un codigo unico de cada medicamento
 nombres -> almacena un nombre en el inventario
 cantidades -> almacena la cantidad en el inventario
 precios -> almacena el precio del medicamento
 */
+/**
+ * ----------------------------------------------
+ * SISTEMA DE UNA DE FARMACIA CON INVENTARIO
+ * ----------------------------------------------
+ * Proyecto elaborado por Angel Alberto Enamorado Rápalo (Me toco solo 😔 )
+ * 
+ * Características principales:
+ * - Manejo del inventario con arreglos
+ * - Registro y consulta de medicamentos
+ * - Calcula el valor total del inventario
+ * - Guardado el archivo en un txt en la carpeta de apache
+ * ==============================================
+ */
+public class ProyectoprogramacionI {
+
+    public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+   
 final int MAX = 100;
 String[] codigos = new String[100];
 String[] nombres = new String[100];
@@ -36,7 +49,7 @@ double total = 0;
 double totalacumulado = 0;
 boolean medicamentoRegistrado = false;
 
-   while (opcionmenu != 10) {
+   while (opcionmenu != 11) {
     saludo ();   
     System.out.println("SISTEMA FARMACIA");
     System.out.println("-----------------");
@@ -49,10 +62,11 @@ boolean medicamentoRegistrado = false;
     System.out.println("7.Mostrar medicamentos registrados");
     System.out.println("8.Valor total del inventario");
     System.out.println("9.Guardar el inventario");
-    System.out.println("10.Salir del sistema");
-    System.out.print("Seleccione una de las opciones del 1 al 10: ");
-
+    System.out.println("10.Mostrar ayuda para utilizar el sistema");
+    System.out.println("11.Salir del sistema");
+    System.out.print("Seleccione una de las opciones del 1 al 11: ");
     
+
    opcionmenu = sc.nextInt();
    sc.nextLine();
 
@@ -325,11 +339,16 @@ boolean medicamentoRegistrado = false;
     double valorTotal = valorInventario(precios, cantidades, numMedicamentos);
     System.out.println("El valor del inventario es: " + valorTotal);
     break;
+    
     case 9:
     guardarinventario(codigos, nombres, precios, cantidades, numMedicamentos);
     break;
-        
-    case 10:
+    
+    case 10: 
+    mostrarAyuda(); 
+    break;   
+    
+    case 11:
     System.out.println("Saliendo del sistema");
     break;
 
@@ -402,5 +421,21 @@ boolean medicamentoRegistrado = false;
     return false;
     
   }//Fin de funcion
+   public static void mostrarAyuda() {
+    System.out.println("-----------------");
+    System.out.println("AYUDA DEL SISTEMA");
+    System.out.println("1: Registrar un medicamento en el inventario.");
+    System.out.println("2: Ver informaciOn de un medicamento");
+    System.out.println("3: Vender medicamento a un cliente");
+    System.out.println("4: Mostrar total de ventas realizadas");
+    System.out.println("5: Editar, modificar o eliminar medicamentos");
+    System.out.println("6: Ver mensaje con el estado del inventari.");
+    System.out.println("7: Mostrar todos los medicamentos registrados");
+    System.out.println("8: Calcular valor total del inventario");
+    System.out.println("9: Guardar inventario en UN archivo de texto");
+    System.out.println("10.Ayuda para utilizar el sistema");
+    System.out.println("11: Salir del sistema");
+    System.out.println("************************************************");
+}
 
 }//Fin de class
