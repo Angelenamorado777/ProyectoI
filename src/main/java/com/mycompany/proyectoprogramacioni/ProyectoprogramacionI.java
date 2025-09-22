@@ -9,9 +9,15 @@ import java.util.Scanner;
 public class ProyectoprogramacionI {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-    final int MAX = 50;
+      Scanner sc = new Scanner(System.in);
+      
+/*/Arreglos para manejar el inventario de la farmcia
+codigos -> almacena un codigo unico de cada medicamento
+nombres -> almacena un nombre en el inventario
+cantidades -> almacena la cantidad en el inventario
+precios -> almacena el precio del medicamento
+*/
+final int MAX = 100;
 String[] codigos = new String[100];
 String[] nombres = new String[100];
 double[] precios = new double[100];
@@ -30,23 +36,29 @@ double total = 0;
 double totalacumulado = 0;
 boolean medicamentoRegistrado = false;
 
-   while (opcionmenu != 6) {
+   while (opcionmenu != 10) {
+    saludo ();   
     System.out.println("SISTEMA FARMACIA");
-    System.out.println("-------------");
+    System.out.println("-----------------");
     System.out.println("1.Registrar medicamento");
     System.out.println("2.Ver el medicamento en el inventario");
     System.out.println("3.Vender el medicamento");
     System.out.println("4.Ver el total de medicamentos vendidos");
     System.out.println("5.Ingresar al submenu para editar un medicamento");
-    System.out.println("6.Salir del sistema");
-    System.out.print("Seleccione una de las opciones del 1 al 6: ");
+    System.out.println("6.Mensaje del inventario");
+    System.out.println("7.Mostrar medicamentos registrados");
+    System.out.println("8.Valor total del inventario");
+    System.out.println("9.Guardar el inventario");
+    System.out.println("10.Salir del sistema");
+    System.out.print("Seleccione una de las opciones del 1 al 10: ");
 
-opcionmenu = sc.nextInt();
-sc.nextLine();
+    
+   opcionmenu = sc.nextInt();
+   sc.nextLine();
 
     switch (opcionmenu) {
-    case 1:
-                    
+    case 1:       
+    
     if (numMedicamentos < MAX) {
     System.out.print("Codigo: ");
     codigo = sc.nextLine();
@@ -71,7 +83,8 @@ sc.nextLine();
     }else {
     System.out.println("Inventario lleno, no se pueden registrar más medicamentos.");
      }
-      break;
+
+     break;
 
     case 2:
      System.out.print("Ingrese codigo o nombre: ");
@@ -237,7 +250,7 @@ sc.nextLine();
     int nuevaCant = sc.nextInt();
     sc.nextLine();
     if (nuevaCant >= 0) {
-    cantidades[i] = nuevaCant;
+    cantidades[i] += nuevaCant;
     cantidad = cantidades[i]; 
     System.out.println("Cantidad actualizada");
     }else {
@@ -301,6 +314,22 @@ sc.nextLine();
      break;
 
     case 6:
+    msjinventario(numMedicamentos, MAX);
+     break;
+    
+    case 7:
+    mostrarInventario(codigos, nombres, precios, cantidades, numMedicamentos);
+    break; 
+    
+    case 8:
+    double valorTotal = valorInventario(precios, cantidades, numMedicamentos);
+    System.out.println("El valor del inventario es: " + valorTotal);
+    break;
+    case 9:
+    guardarinventario(codigos, nombres, precios, cantidades, numMedicamentos);
+    break;
+        
+    case 10:
     System.out.println("Saliendo del sistema");
     break;
 
@@ -313,5 +342,65 @@ sc.nextLine();
     sc.nextLine();
         }
      }
+   
     }//Fin de main
+    
+    //Nueva Función
+     public static void guardarinventario(String[] codigos, String[] nombres, double[] precios, int[] cantidades, int numMedicamentos) {
+     try {
+     java.io.FileWriter writer = new java.io.FileWriter("inventario.txt");
+     writer.write("INVENTARIO DE LA FARMACIA");
+       writer.write("");
+        
+     for (int i = 0; i < numMedicamentos; i++) {
+     writer.write("Codigo: " + codigos[i] + " -Nombre: " + nombres[i] + " -Precio: " + precios[i] + " | Cantidad: " + cantidades[i] + "\n");
+      }        
+     writer.close();
+     System.out.println("Inventario guardado");
+     }catch (Exception e) {
+     System.out.println("No se puede guardar el inventario " + e.getMessage());
+        }
+     }
+    
+    //Funcion 1
+    public static void saludo() {
+      System.out.println("Bienvenido al sistema de la farmacia");
+    }//Fin de funcion
+    //Funcion 2
+    public static void msjinventario(int numMedicamentos, int MAX) {
+        System.out.println("En el inventario hay " + numMedicamentos + " medicamentos registrados");
+        System.out.println("El inventario tiene un limite de " + MAX + " medicamentos");
+    }
+    //Funcion 3
+    public static void mostrarInventario(String[] codigos, String[] nombres, double[] precios, int[] cantidades, int numMedicamentos) {
+      if (numMedicamentos == 0) {
+        System.out.println("No hay medicamentos ningun medicamento en el inventario");
+    } else {
+        System.out.println("INVENTARIO SISTEMA FARMACIA");
+        for (int i = 0; i < numMedicamentos; i++) {
+            System.out.println("Codigo: " + codigos[i] + " -Nombre: " + nombres[i] + " -Precio: " + precios[i] + " -Cantidad: " + cantidades[i]);
+          }
+      }
+    }//Fin de funcion 
+    
+    //Funcion 4
+    public static double valorInventario(double[] precios, int[] cantidades, int numMedicamentos) {
+    double total = 0;
+    for (int i = 0; i < numMedicamentos; i++) {
+        total += precios[i] * cantidades[i];
+    }
+    return total;
+    }//Fin de funcion
+
+    //Funcion 5
+    public static boolean existeMedicamento(String[] codigos, String[] nombres, int numMedicamentos, String dato) {
+    for (int i = 0; i < numMedicamentos; i++) {
+        if (dato.equalsIgnoreCase(codigos[i]) || dato.equalsIgnoreCase(nombres[i])) {
+            return true;
+         }
+     }
+    return false;
+    
+  }//Fin de funcion
+
 }//Fin de class
